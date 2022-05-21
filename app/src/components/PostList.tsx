@@ -7,22 +7,20 @@ const PostList = () => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        setPosts([]);
         loadPosts();
     }, []);
 
-    const loadPosts = () => {
-        fetchPosts().then(res=> {
-            console.log(res);
-            // setPosts(res)
-        }).catch(err=>console.log(err))
-    }
+    const loadPosts = async () => {
+        const {data: response} = await fetchPosts();
+        const {data: posts} = response;
+        return setPosts(posts);
+        };
 
     return (
         <>
             <div>
-                {(posts || []).map(element => {
-                    return <div>{ element }</div>
+                {(posts || []).map((element:any) => {
+                    return <div>{ element?.name || 'sth' }</div>
                 })}
             </div>
         </>
