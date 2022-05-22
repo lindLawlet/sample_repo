@@ -1,4 +1,4 @@
 language: bash
 
 script:
-  - echo "hello world I am here trying travis out"
+  - yarn build
